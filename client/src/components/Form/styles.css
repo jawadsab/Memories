@@ -1,0 +1,125 @@
+.form {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 400;
+}
+
+.ip-group {
+  margin: 1rem 0rem;
+  position: relative;
+}
+
+.ip-group .ip {
+  width: 100%;
+  padding: 8px 8px;
+  font-family: inherit;
+  outline: none;
+  border-radius: 10px;
+  border: 2px solid #9fa0ff;
+  top: 0;
+  left: 0;
+}
+
+.ip-group .ip:focus {
+  border-color: #480ca8;
+}
+
+.ip-group .ip-label {
+  position: absolute;
+  font-size: 0.9rem;
+  top: 0.5rem;
+  left: 0.8rem;
+  padding: 1px;
+  color: #9fa0ff;
+  transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in,
+    color 200ms ease-in;
+}
+
+.ip:focus ~ .ip-label,
+.ip:not(:placeholder-shown) ~ .ip-label {
+  background-color: #ffffff;
+  font-size: 0.7rem;
+  padding: 2px 3px;
+  top: -0.6rem;
+  left: 0.5rem;
+  color: #480ca8;
+  font-weight: bold;
+  border: 2px;
+}
+
+.text-area {
+  resize: none;
+}
+
+.ip-file {
+  display: none;
+}
+
+.file-label {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 200ms ease-in;
+}
+
+.fa-image {
+  margin-right: 4px;
+  color: #4895ef;
+  position: absolute;
+}
+
+.file-label:hover {
+  background-color: #e2cfea;
+}
+
+.file-label span {
+  margin-left: 2rem;
+  display: inline-block;
+  margin-top: 4px;
+}
+.ip-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit,
+.clear {
+  padding: 8px 2px;
+  margin-bottom: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 8px;
+  transition: filter 200ms ease-in;
+  color: white;
+}
+
+.submit {
+  background-color: #4895ef;
+}
+.submit:hover {
+  filter: brightness(110%);
+}
+
+.clear {
+  background-color: #f72585;
+}
+.clear:hover {
+  filter: brightness(110%);
+}
+
+
+@media screen and (max-width: 840px) {
+    .form {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+  }

@@ -1,11 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Form from './components/Form/Form';
+import Navbar from './components/Navbar/Navbar';
+import './index.css';
 
 const App = () => {
-    return (
-        <div>
-            <h1>App</h1>
+  return (
+    <div className="app">
+      <Navbar />
+      <div className="grid-layout">
+        <div className="item-left">
+          <Form />
         </div>
-    )
-}
+        <div className="item-center"></div>
+      </div>
+    </div>
+  );
+};
 
-export default App
+export default App;
