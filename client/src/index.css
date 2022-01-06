@@ -27,9 +27,5 @@ body {
   .grid-layout {
     grid-template-columns: 1fr;
   }
-  .item-left {
-      /* display:flex;
-      align-items:center;
-      justify-content:center; */
-  }
+ 
 }

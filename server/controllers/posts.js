@@ -12,9 +12,14 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req, res) => {
   const post = req.body;
 
-  const newPost = new PostMessage(post);
 
   try {
+    const tagString = post.tagString;
+    const newPost = new PostMessage(post);
+ 
+    tagString.split(",").forEach(tag => {
+      newPost.tags.push(tag.trim());
+    });
     await newPost.save();
     res.status(200).json({ post: newPost });
   } catch (error) {
