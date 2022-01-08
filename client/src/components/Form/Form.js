@@ -13,7 +13,7 @@ const Form = () => {
   });
   const dispatch = useDispatch();
 
-  const { title, creator, message,tagString } = postData;
+  const { title, creator, message, tagString } = postData;
 
   const handleInputChange = (name) => (event) => {
     const value = event.target.value;
@@ -32,8 +32,15 @@ const Form = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(postData);
     dispatch(createPost(postData));
+    setPostData({
+      ...postData,
+      title: '',
+      creator: '',
+      message: '',
+      tagString: '',
+      selectedFile: '',
+    });
   };
   return (
     <form autoComplete="off" className="form" onSubmit={handleOnSubmit}>

@@ -10,6 +10,7 @@ import './index.css';
 const App = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.posts);
+  console.log("App data",data)
 
   useEffect(() => {
     dispatch(getPosts());
@@ -21,8 +22,8 @@ const App = () => {
         <div className="item-left">
           <Form />
         </div>
-        <div className="item-center">
-          <Posts posts={data.posts} />
+        <div className="item-right">
+         <Posts posts={data} />
         </div>
       </div>
     </div>
