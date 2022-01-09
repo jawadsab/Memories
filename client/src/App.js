@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from './actions/posts';
 import Form from './components/Form/Form';
 import Navbar from './components/Navbar/Navbar';
-import Posts from "./components/Posts/Posts";
+import Posts from './components/Posts/Posts';
 
 import './index.css';
 
 const App = () => {
+  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.posts);
-  console.log("App data",data)
+
+
 
   useEffect(() => {
     dispatch(getPosts());
@@ -20,10 +22,10 @@ const App = () => {
       <Navbar />
       <div className="grid-layout">
         <div className="item-left">
-          <Form />
+          <Form currentId={currentId} setCurrentId={setCurrentId}/>
         </div>
         <div className="item-right">
-         <Posts posts={data} />
+          <Posts posts={data} setCurrentId={setCurrentId} />
         </div>
       </div>
     </div>

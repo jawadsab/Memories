@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../actions/posts';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, updatePost } from '../../actions/posts';
 import './styles.css';
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     title: '',
     creator: '',
@@ -12,6 +12,15 @@ const Form = () => {
     selectedFile: '',
   });
   const dispatch = useDispatch();
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) {
+      setPostData({ ...post, tagString: post.tags.join(',') });
+    }
+  }, [post]);
 
   const { title, creator, message, tagString } = postData;
 
@@ -32,7 +41,16 @@ const Form = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
+    clear();
+  };
+
+  const clear = () => {
+    setCurrentId(null);
     setPostData({
       ...postData,
       title: '',
@@ -44,7 +62,7 @@ const Form = () => {
   };
   return (
     <form autoComplete="off" className="form" onSubmit={handleOnSubmit}>
-      <h4 className="title">Create a memory</h4>
+      <h4 className="title">{currentId ? 'Editing' : 'Creating'} a memory</h4>
       <div className="ip-group">
         <input
           value={creator}
@@ -116,7 +134,7 @@ const Form = () => {
         <button type="submit" className="submit">
           Post
         </button>
-        <button type="button" className="clear">
+        <button type="button" className="clear" onClick={clear}>
           Clear
         </button>
       </div>
